@@ -4,8 +4,12 @@ import * as express from 'express';
 import { join } from 'path';
 
 async function bootstrap() {
-  const PORT = process.env.PORT || 8000;
+  //const PORT = process.env.PORT || 8000;
+  //const app = await NestFactory.create(AppModule);
+
   const app = await NestFactory.create(AppModule);
+  const port = process.env.PORT || 8000;
+  
   
   app.enableCors({
     origin: ['https://client-diplom.vercel.app', 'http://localhost:3000'],
@@ -17,6 +21,6 @@ async function bootstrap() {
   app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
 
-  await app.listen(PORT, () => console.log(`Server has been started on port ${PORT}`))
+  await app.listen(port, '0.0.0.0');
 }
 bootstrap();
