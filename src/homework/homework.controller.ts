@@ -42,9 +42,7 @@ export class HomeworkController {
     @UploadedFile() file: Express.Multer.File,
     @Body() createHomeworkDto: CreateHomeworkDto,
   ) {
-    if (!file) throw new BadRequestException('Файл не был загружен');
-
-    const fileUrl = `/uploads/homeworks/${file.filename}`;
+    const fileUrl = file ? `/uploads/homeworks/${file.filename}` : null;
     const lessonId = Number(createHomeworkDto.lessonId);
 
     return this.homeworkService.create(
