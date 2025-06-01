@@ -35,12 +35,23 @@ export class GradeController {
     return this.gradeService.findAllByStudent(Number(studentId));
   }
 
-  @Get('by-group-and-discipline')
-  async getAllByGroupAndDiscipline(
+  @Get('by-group-and-discipline-without')
+  async getAllByGroupAndDisciplineWithout(
     @Query('groupId') groupId: number,
     @Query('disciplineId') disciplineId: number,
   ) {
-    return this.gradeService.findAllByGroupAndDiscipline(
+    return this.gradeService.findAllByGroupAndDisciplineWithoutHomeworks(
+      Number(groupId),
+      Number(disciplineId),
+    );
+  }
+
+    @Get('by-group-and-discipline-with')
+  async getAllByGroupAndDisciplineWith(
+    @Query('groupId') groupId: number,
+    @Query('disciplineId') disciplineId: number,
+  ) {
+    return this.gradeService.findAllByGroupAndDisciplineWithHomeworks(
       Number(groupId),
       Number(disciplineId),
     );
