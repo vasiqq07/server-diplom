@@ -49,7 +49,7 @@ export class GradeService {
     });
   }
 
-  public async findAllByGroupAndDiscipline(
+  public async findAllByGroupAndDisciplineWithoutHomeworks(
     groupId: number,
     disciplineId: number,
   ) {
@@ -57,6 +57,19 @@ export class GradeService {
       where: {
         lesson: { schedule: { groupId: groupId, disciplineId: disciplineId } },
         homeworkSubmissionId: null,
+      },
+      include: { lesson: true, student: true },
+    });
+  }
+
+    public async findAllByGroupAndDisciplineWithHomeworks(
+    groupId: number,
+    disciplineId: number,
+  ) {
+    return await this.prisma.grade.findMany({
+      where: {
+        lesson: { schedule: { groupId: groupId, disciplineId: disciplineId } },
+        //homeworkSubmissionId: null,
       },
       include: { lesson: true, student: true },
     });
