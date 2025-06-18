@@ -12,7 +12,7 @@ async function bootstrap() {
   
   
   app.enableCors({
-    origin: ['https://client-diplom.vercel.app', 'http://localhost:3000', 'http://localhost:3030'],
+    origin: ['https://client-diplom.vercel.app', 'http://localhost:3000', 'http://localhost:3030', 'http://77.222.43.225:3030'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true,
